@@ -1,15 +1,12 @@
-import { View, Text, TextInput, Touchable, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { View, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, { useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Logo from '../assets/MerkinsioLogo.png';
 import Icon from 'react-native-vector-icons/Feather';
-import { useNavigation } from '@react-navigation/native';
-import { TextInputPoppins, TextOverpassBold, TextPoppins, TextRoboto } from '../utils/CustomFonts';
+import { TextPoppins } from '../utils/CustomFonts';
+import RegisterForm from '../components/Auth/RegisterForm';
 
 export default function Register(props) {
-
-    const [seePassword, setSeePassword] = useState(true);
-    const [seeSecondPassword, setSeeSecondPassword] = useState(true);
 
     const { navigation, route: { params } } = props;
 
@@ -30,60 +27,7 @@ export default function Register(props) {
         <SafeAreaView style={styles.bg}>
             <Image source={Logo} style={styles.image} />
 
-            <View style={styles.inputContainer}>
-                <TextInputPoppins
-                    placeholder='Nombre Completo'
-                    style={styles.input}
-                    placeholderTextColor={'#696767'}
-                    autoCapitalize='words'
-                    secureTextEntry={false}
-                    autoComplete='name'
-                    regular
-                />
-                <TextInputPoppins
-                    placeholder='Email'
-                    style={styles.input}
-                    placeholderTextColor={'#696767'}
-                    autoCapitalize='none'
-                    secureTextEntry={false}
-                    autoComplete='email'
-                    regular
-                />
-                <View style={styles.inputPassContainer}>
-                    <TextInputPoppins
-                        placeholder='Contraseña'
-                        style={styles.inputPass}
-                        placeholderTextColor={'#696767'}
-                        autoCapitalize='none'
-                        secureTextEntry={seePassword}
-                        regular
-                    />
-                    <TouchableOpacity onPress={() => { setSeePassword(!seePassword) }}>
-                        {seePassword ?
-                            <Icon name='eye-off' size={25} color={'#696767'} />
-                            : <Icon name='eye' size={25} color={'#696767'} />}
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.inputPassContainer}>
-                    <TextInputPoppins
-                        placeholder='Repita la Contraseña'
-                        style={styles.inputPass}
-                        placeholderTextColor={'#696767'}
-                        autoCapitalize='none'
-                        secureTextEntry={seeSecondPassword}
-                        regular
-                    />
-                    <TouchableOpacity onPress={() => { setSeeSecondPassword(!seeSecondPassword) }}>
-                        {seeSecondPassword ?
-                            <Icon name='eye-off' size={25} color={'#696767'} />
-                            : <Icon name='eye' size={25} color={'#696767'} />}
-                    </TouchableOpacity>
-                </View>
-            </View>
-
-            <TouchableOpacity style={styles.loginButton} >
-                <TextRoboto style={styles.loginText}>ENTRAR</TextRoboto>
-            </TouchableOpacity>
+            <RegisterForm />
 
             <View style={styles.subtitleContainer}>
                 <TextPoppins style={{ fontSize: 17, letterSpacing: 1.5 }} regular>¿Ya tienes cuenta?, </TextPoppins>

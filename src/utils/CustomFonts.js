@@ -97,6 +97,8 @@ export function TextInputPoppins({
     placeholderTextColor,
     autoCapitalize,
     secureTextEntry,
+    value,
+    onChangeText,
 }) {
 
     let [fontsLoaded, error] = useFonts({
@@ -119,6 +121,8 @@ export function TextInputPoppins({
                 placeholderTextColor={placeholderTextColor}
                 autoCapitalize={autoCapitalize}
                 secureTextEntry={secureTextEntry}
+                value={value}
+                onChangeText={onChangeText}
             />
         );
     } else if (bold) {

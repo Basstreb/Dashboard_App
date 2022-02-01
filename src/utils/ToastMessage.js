@@ -1,6 +1,6 @@
 import Toast from 'react-native-root-toast';
 
-export function toastMessage(text, color) {
+export function toastMessage(text, bgColor) {
     return Toast.show(text, {
         duration: Toast.durations.SHORT,
         position: -300,
@@ -8,8 +8,8 @@ export function toastMessage(text, color) {
         animation: true,
         hideOnPress: true,
         delay: 0,
-        backgroundColor: 'none',
+        backgroundColor: bgColor,
+        textColor: '#FFFFFF',
         shadowColor: '#000',
-        textColor: '#000',
     });
 };
