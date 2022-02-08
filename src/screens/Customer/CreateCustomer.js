@@ -1,13 +1,12 @@
 import { View, StyleSheet, Platform } from 'react-native';
 import React, { useEffect } from 'react';
-import { TextPoppins } from '../utils/CustomFonts';
+import { TextPoppins } from '../../utils/CustomFonts';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import CustomerCreationForm from '../components/Create/CustomerCreationForm';
+import CustomerCreationForm from '../../components/Forms/CustomerCreationForm';
 
-export default function CreateEditCustomer(props) {
+export default function CreateCustomer(props) {
 
     const { navigation } = props;
-    const { action, customer } = props.route.params;
 
     useEffect(() => {
         navigation.setOptions({
@@ -24,7 +23,7 @@ export default function CreateEditCustomer(props) {
                     onPress={() => navigation.navigate('MainCustomers')} />
             ),
             headerTitle: () => (
-                <TextPoppins regular style={{ fontSize: 20, letterSpacing: 1, marginRight: Platform.OS === 'android' ? 0 : 160 }}>{action === 'edit' ? 'Editar' : 'Añadir'}</TextPoppins>
+                <TextPoppins regular style={{ fontSize: 20, letterSpacing: 1, marginRight: Platform.OS === 'android' ? 0 : 160 }}>Añadir</TextPoppins>
             ),
         })
     }, [navigation])
@@ -32,7 +31,7 @@ export default function CreateEditCustomer(props) {
     return (
         <View style={styles.bg}>
             <TextPoppins semiBold style={styles.title}>Cliente</TextPoppins>
-            <CustomerCreationForm action={action} customer={customer} />
+            <CustomerCreationForm />
         </View>
     );
 }

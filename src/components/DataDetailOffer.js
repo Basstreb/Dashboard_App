@@ -9,6 +9,7 @@ export default function DataDetailOffer({ offer }) {
 
     const statusBg = {
         backgroundColor: showStatus(offer.status),
+        borderRadius: 8,
         ...styles.statusStyle
     };
 
@@ -86,7 +87,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         letterSpacing: 1,
         padding: 5,
-        borderRadius: 5,
         flex: 1,
         alignItems: 'center',
         textAlign: 'center',

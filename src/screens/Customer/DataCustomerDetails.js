@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React, { useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { TextPoppins } from '../utils/CustomFonts';
-import DataDetailCustomer from '../components/DataDetailCustomer';
-import DataDetailOffer from '../components/DataDetailOffer';
+import { TextPoppins } from '../../utils/CustomFonts';
+import DataDetailCustomer from '../../components/DataDetailCustomer';
+import DataDetailOffer from '../../components/DataDetailOffer';
 
 export default function CustomerDetails(props) {
 
-  const {customer, offer} = props.route.params;
+  const customer = props.route.params;
   const { navigation } = props;
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function CustomerDetails(props) {
           size={30}
           color="#000000"
           style={{ marginLeft: 20 }}
-          onPress={() => navigation.navigate(customer ? 'MainCustomers' : 'MainOffers')} />
+          onPress={() => navigation.navigate('MainCustomers')} />
       ),
       headerTitle: () => (
         <TextPoppins regular style={{ fontSize: 20, letterSpacing: 1, marginRight: Platform.OS === 'android' ? 0 : 160 }}>Detalles</TextPoppins>
@@ -32,11 +32,8 @@ export default function CustomerDetails(props) {
 
   return (
     <View style={styles.bg}>
-      <TextPoppins semiBold style={styles.title}>{customer ? 'Cliente' : 'Oferta'}</TextPoppins>
-
-      {customer && <DataDetailCustomer customer={customer} />}
-      {offer && <DataDetailOffer offer={offer} />}
-
+      <TextPoppins semiBold style={styles.title}>Cliente</TextPoppins>
+      <DataDetailCustomer customer={customer} />
     </View>
   );
 }

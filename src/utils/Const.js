@@ -33,6 +33,6 @@ export function trasnlateOfferStatus (string) {
         case "PAYMENT_PENDING":
             return 'Pendiente de pago'
         case "PAYD":
-            return 'Pagado'
+            return 'Cobrado'
     }
 }

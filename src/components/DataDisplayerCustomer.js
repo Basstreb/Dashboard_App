@@ -2,7 +2,7 @@ import { View, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { TextPoppins } from '../utils/CustomFonts';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import OptionsModal from './OptionsModal';
+import OptionsCustomerModal from './Modals/OptionsCustomerModal';
 import { COLORS } from '../utils/Const';
 import Icon from 'react-native-vector-icons/Entypo';
 
@@ -30,7 +30,7 @@ export default function DataDisplayerCustomer(props) {
             <TextPoppins regular style={styles.titleText}>Teléfono</TextPoppins>
             <TextPoppins medium style={styles.textDataFinal}>{customer.phoneNumber}</TextPoppins>
 
-            <OptionsModal id={customer.id} customer={customer} optionsModalVisible={optionsModalVisible} closeOptionsModalVisible={() => setOptionsModalVisible(!optionsModalVisible)} />
+            <OptionsCustomerModal id={customer.id} customer={customer} optionsModalVisible={optionsModalVisible} closeOptionsModalVisible={() => setOptionsModalVisible(!optionsModalVisible)} />
         </>
     );
 }

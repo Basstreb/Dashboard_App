@@ -116,6 +116,11 @@ export function TextInputPoppins({
     secureTextEntry,
     value,
     onChangeText,
+    editable,
+    selectTextOnFocus,
+    maxLength,
+    keyboardType,
+    onChange,
 }) {
 
     let [fontsLoaded, error] = useFonts({
@@ -140,6 +145,11 @@ export function TextInputPoppins({
                 secureTextEntry={secureTextEntry}
                 value={value}
                 onChangeText={onChangeText}
+                editable={editable}
+                selectTextOnFocus={selectTextOnFocus}
+                maxLength={maxLength}
+                keyboardType={keyboardType}
+                onChange={onChange}
             />
         );
     } else if (bold) {
@@ -150,6 +160,13 @@ export function TextInputPoppins({
                 placeholderTextColor={placeholderTextColor}
                 autoCapitalize={autoCapitalize}
                 secureTextEntry={secureTextEntry}
+                value={value}
+                keyboardType={keyboardType}
+                onChangeText={onChangeText}
+                editable={editable}
+                selectTextOnFocus={selectTextOnFocus}
+                maxLength={maxLength}
+                onChange={onChange}
             />
         );
     }

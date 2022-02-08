@@ -1,8 +1,9 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import CustomersScreen from '../screens/Customers';
-import CreateCustomerScreen from '../screens/CreateEditCustomer';
-import CustomerDetailsScreen from '../screens/DataDetails';
+import CreateCustomerScreen from '../screens/Customer/CreateCustomer';
+import CustomerDetailsScreen from '../screens/Customer/DataCustomerDetails';
+import EditCustomerScreen from '../screens/Customer/EditCustomer';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,10 @@ export default function CustomersNavigation() {
             <Stack.Screen
                 name="CreateCustomer"
                 component={CreateCustomerScreen}
+                options={{ title: '', headerTrasparent: true }} />
+            <Stack.Screen
+                name="EditCustomer"
+                component={EditCustomerScreen}
                 options={{ title: '', headerTrasparent: true }} />
             <Stack.Screen
                 name="CustomerDetails"

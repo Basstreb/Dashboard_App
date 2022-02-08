@@ -1,18 +1,16 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import Modal from 'react-native-modal';
-import { TextPoppins } from '../utils/CustomFonts';
-import { deleteCustomerApi } from '../api/CustomersApi';
-import { deleteOfferApi } from '../api/OffersApi';
+import { TextPoppins } from '../../utils/CustomFonts';
+import { deleteCustomerApi } from '../../api/CustomersApi';
+import { deleteOfferApi } from '../../api/OffersApi';
 
-export default function DeleteModal(props) {
+export default function DeleteCustomerModal(props) {
 
-  const { deleteModalVisible, closeDeleteModalVisible, closeOptionsModalVisible, id, customer, offer } = props;
+  const { deleteModalVisible, closeDeleteModalVisible, closeOptionsModalVisible, id } = props;
 
   const deleteCustomer = async (id) => {
-    let response;
-    customer ? response = await deleteCustomerApi(id) : '';
-    offer ? response = await deleteOfferApi(id) : '';
+    const response = await deleteCustomerApi(id);
     if (typeof response === 'object') {
       closeDeleteModalVisible();
       closeOptionsModalVisible();

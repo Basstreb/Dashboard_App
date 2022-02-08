@@ -1,12 +1,13 @@
 import { View, StyleSheet, Platform } from 'react-native';
 import React, { useEffect } from 'react';
-import { TextPoppins } from '../utils/CustomFonts';
+import { TextPoppins } from '../../utils/CustomFonts';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import OfferCreationForm from '../components/Create/OfferCreationForm';
+import CustomerEditForm from '../../components/Forms/CustomerEditForm';
 
-export default function CreateOffer(props) {
+export default function EditCustomer(props) {
+
     const { navigation } = props;
-    const { action, customer } = props.route.params;
+    const customer = props.route.params;
 
     useEffect(() => {
         navigation.setOptions({
@@ -20,18 +21,22 @@ export default function CreateOffer(props) {
                     size={30}
                     color="#000000"
                     style={{ marginLeft: 20 }}
-                    onPress={() => navigation.navigate('MainOffers')} />
+                    onPress={() => navigation.navigate('MainCustomers')} />
             ),
             headerTitle: () => (
-                <TextPoppins regular style={{ fontSize: 20, letterSpacing: 1, marginRight: Platform.OS === 'android' ? 0 : 160 }}>{action === 'edit' ? 'Editar' : 'Añadir'}</TextPoppins>
+                <TextPoppins
+                    regular
+                    style={{ fontSize: 20, letterSpacing: 1, marginRight: Platform.OS === 'android' ? 0 : 160 }}>
+                    Editar
+                </TextPoppins>
             ),
         })
     }, [navigation])
 
     return (
         <View style={styles.bg}>
-            <TextPoppins semiBold style={styles.title}>Oferta</TextPoppins>
-            <OfferCreationForm action={action} customer={customer} />
+            <TextPoppins semiBold style={styles.title}>Cliente</TextPoppins>
+            <CustomerEditForm customer={customer} />
         </View>
     );
 }

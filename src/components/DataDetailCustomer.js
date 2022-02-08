@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { TextPoppins } from '../utils/CustomFonts';
 
-export default function DataDetailCustomer({customer}) {
+export default function DataDetailCustomer({ customer }) {
     return (
         <View style={styles.detailsContainer}>
             <View>
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
     },
     dataSpacing: {
         marginTop: 20,
-        marginBottom: 100,
     },
     text: {
         fontSize: 16,

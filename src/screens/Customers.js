@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, TouchableOpacity, FlatList, View } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { TextOverpassBold } from '../utils/CustomFonts';
 import { COLORS } from '../utils/Const';
@@ -59,17 +59,18 @@ export default function Customers(props) {
   }, [navigation])
 
   return (
-    <FlatList
-      data={customers}
-      numColumns={1}
-      showsVerticalScrollIndicator={false}
-      keyExtractor={(customer) => String(customer.id)}
-      renderItem={({ item }) => 
-      <DataCard>
-        <DataDisplayerCustomer customer={item} />
-      </DataCard>}
-      style={styles.bg}
-    />
+    <View style={styles.bg}>
+      <FlatList
+        data={customers}
+        numColumns={1}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(customer) => String(customer.id)}
+        renderItem={({ item }) =>
+          <DataCard>
+            <DataDisplayerCustomer customer={item} />
+          </DataCard>}
+      />
+    </View>
   );
 }
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
 import OffersScreen from '../screens/Offers';
-import CreateOfferScreen from '../screens/CreateOffer';
-import OfferDetailsScreen from '../screens/DataDetails';
+import CreateOfferScreen from '../screens/Offer/CreateOffer';
+import OfferDetailsScreen from '../screens/Offer/DataOfferDetails';
+import EditOfferScreen from '../screens/Offer/EditOffer';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,10 @@ export default function OffersNavigation() {
             <Stack.Screen
                 name="CreateOffer"
                 component={CreateOfferScreen}
+                options={{ title: '', headerTrasparent: true }} />
+            <Stack.Screen
+                name="EditOffer"
+                component={EditOfferScreen}
                 options={{ title: '', headerTrasparent: true }} />
             <Stack.Screen
                 name="OfferDetails"

@@ -8,28 +8,19 @@ import { COLORS } from '../../utils/Const';
 import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 
-export default function CustomerCreationForm(props) {
+export default function CustomerCreationForm() {
 
-    const { customer, action } = props;
     const navigation = useNavigation();
     const formik = useFormik({
-        initialValues: action === 'create' ? initialValuesCreationCustomer() : initialValuesEditCustomer(customer),
+        initialValues: initialValuesCreationCustomer(),
         validationSchema: Yup.object(validationSchema()),
         validateOnChange: false,
         onSubmit: async (data) => {
 
-            let content;
-            if(action === 'edit') {
-                content = await updateCustomerApi(data, String(customer.id));  
-            }else{
-                content = await createCustomerApi(data);
-            }
+            const content = await createCustomerApi(data);
 
-            if (typeof content === 'object' && action === 'create') {
+            if (typeof content === 'object') {
                 toastMessage('Cliente registrado correctamente', COLORS.succes);
-                navigation.navigate('MainCustomers');
-            }else if(typeof content === 'object' && action === 'edit'){
-                toastMessage('Cliente actualizado correctamente', COLORS.succes);
                 navigation.navigate('MainCustomers');
             } else {
                 toastMessage('Hubo un error en el registro', COLORS.error);
@@ -142,17 +133,6 @@ function initialValuesCreationCustomer() {
         phoneNumber: '',
         cif: '',
         direction: '',
-    }
-}
-
-function initialValuesEditCustomer(customer) {
-    return {
-        companyName: customer.companyName,
-        managerName: customer.managerName,
-        managerCharge: customer.managerCharge,
-        phoneNumber: customer.phoneNumber,
-        cif: customer.cif,
-        direction: customer.direction,
     }
 }
 

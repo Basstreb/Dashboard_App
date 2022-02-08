@@ -2,9 +2,9 @@ import { View, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { TextPoppins } from '../utils/CustomFonts';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import OptionsModal from './OptionsModal';
 import { COLORS, showStatus } from '../utils/Const';
 import Icon from 'react-native-vector-icons/Entypo';
+import OptionsOfferModal from './Modals/OptionsOfferModal';
 
 export default function DataDisplayerOffer(props) {
 
@@ -30,12 +30,12 @@ export default function DataDisplayerOffer(props) {
                 </TouchableOpacity>
             </View>
             <TextPoppins medium style={styles.textData}>{offer.companyName}</TextPoppins>
-            <TextPoppins regular style={styles.titleText}>Tipo de ofera</TextPoppins>
+            <TextPoppins regular style={styles.titleText}>Tipo de oferta</TextPoppins>
             <TextPoppins medium style={styles.textData}>{offer.offer}</TextPoppins>
             <TextPoppins regular style={styles.titleText}>Nombre de la oferta</TextPoppins>
             <TextPoppins medium style={styles.textDataFinal}>{offer.offerName}</TextPoppins>
 
-            <OptionsModal id={offer.id} offer={offer} optionsModalVisible={optionsModalVisible} closeOptionsModalVisible={() => setOptionsModalVisible(!optionsModalVisible)} />
+            <OptionsOfferModal id={offer.id} offer={offer} optionsModalVisible={optionsModalVisible} closeOptionsModalVisible={() => setOptionsModalVisible(!optionsModalVisible)} />
         </>
     );
 }

@@ -27,8 +27,6 @@ export const createCustomerApi = async (data) => {
 }
 
 export const updateCustomerApi = async (data, id) => {
-    // const submitUpdateClient = async (data) => {
-
     const clientId = String(id)
     const companyName = data.companyName
     const managerName = data.managerName
@@ -37,7 +35,16 @@ export const updateCustomerApi = async (data, id) => {
     const cif = data.cif
     const direction = data.direction
 
-    try{
+    try {
+        const responseCLientOffers = await fetch(API_URL + "/update_client_offers", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                clientId,
+                companyName,
+            })
+        });
+
         const responseClient = await fetch(API_URL + "/update_client", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -52,42 +59,32 @@ export const updateCustomerApi = async (data, id) => {
             })
         });
         const contentClient = await responseClient.json();
-        return contentClient;
-    }catch(error){
+        const contentClientOffers = await responseCLientOffers.json();
+        return contentClient, contentClientOffers;
+    } catch (error) {
         throw error;
     }
-
-    // const responseCLientOffers = await fetch(api + "/update_client_offers", {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({
-    //         clientId,
-    //         companyName,
-    //     })
-    // });
 }
 
 export const deleteCustomerApi = async (id) => {
-    // const clientId = String(id)
+    const clientId = String(id)
 
-    // axios.post(api + "/delete_client_offers",
-    //     JSON.stringify({
-    //         clientId,
-    //     }), {
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // }
-    // ).catch(function (error) {
-    //     console.log(error);
-    // })
+    try {
+        const responseDeleteClientOffers = await fetch(API_URL + "/delete_client_offers", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ clientId })
+        })
 
-    const response = await fetch(API_URL + "/delete_client", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id })
-    })
-    const content = await response.json();
-    return content;
-
+        const response = await fetch(API_URL + "/delete_client", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id })
+        })
+        const content = await response.json();
+        const contentDeleteClientOffers = await responseDeleteClientOffers.json();
+        return content, contentDeleteClientOffers;
+    } catch (error) {
+        throw error;
+    }
 }

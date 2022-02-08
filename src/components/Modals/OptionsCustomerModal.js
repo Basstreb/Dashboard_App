@@ -2,22 +2,17 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
-import { TextPoppins } from "../utils/CustomFonts";
-import DeleteSVG from "../utils/svg/DeleteSVG";
-import DetailsSVG from "../utils/svg/DetailsSVG";
-import EditSVG from "../utils/svg/EditSVG";
-import DeleteModal from "./DeleteModal";
+import { TextPoppins } from "../../utils/CustomFonts";
+import DeleteSVG from "../../utils/svg/DeleteSVG";
+import DetailsSVG from "../../utils/svg/DetailsSVG";
+import EditSVG from "../../utils/svg/EditSVG";
+import DeleteModal from "./DeleteCustomerModal";
 
-export default function OptionsModal(props) {
+export default function OptionsCustomerModal(props) {
 
-    const { optionsModalVisible, closeOptionsModalVisible, id, customer, offer } = props;
+    const { optionsModalVisible, closeOptionsModalVisible, id, customer } = props;
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
     const navigation = useNavigation();
-    const options = {
-        action: 'edit',
-        customer: customer,
-        offer: offer,
-    }
 
     return (
         <Modal
@@ -39,7 +34,7 @@ export default function OptionsModal(props) {
                         </View>
                         <TouchableOpacity onPress={() => {
                             closeOptionsModalVisible();
-                            navigation.navigate(customer ? 'CustomerDetails' : 'OfferDetails', options)
+                            navigation.navigate(customer ? 'CustomerDetails' : 'OfferDetails', customer)
                         }}>
                             <TextPoppins medium style={styles.poppinsStyle}>Ver detalles</TextPoppins>
                         </TouchableOpacity>
@@ -51,7 +46,7 @@ export default function OptionsModal(props) {
                         </View>
                         <TouchableOpacity onPress={() => {
                             closeOptionsModalVisible();
-                            navigation.navigate('CreateCustomer', options)
+                            navigation.navigate('EditCustomer', customer)
                         }}>
                             <TextPoppins medium style={styles.poppinsStyle}>Editar</TextPoppins>
                         </TouchableOpacity>
@@ -68,8 +63,6 @@ export default function OptionsModal(props) {
 
                     <DeleteModal
                         id={id}
-                        customer={customer}
-                        offer={offer}
                         deleteModalVisible={deleteModalVisible}
                         closeOptionsModalVisible={() => closeOptionsModalVisible()}
                         closeDeleteModalVisible={() => setDeleteModalVisible(false)} />
