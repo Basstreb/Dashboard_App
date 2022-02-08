@@ -48,12 +48,14 @@ export function TextRoboto({ children, style }) {
     );
 }
 
-export function TextPoppins({ children, style, bold, regular, medium }) {
+export function TextPoppins({ children, style, bold, regular, medium, semiBold, light }) {
 
     let [fontsLoaded, error] = useFonts({
         'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
         'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Light': require('../../assets/fonts/Poppins-Light.ttf'),
     });
 
     if (error) {
@@ -83,6 +85,21 @@ export function TextPoppins({ children, style, bold, regular, medium }) {
         return (
             <RnText
                 style={{ fontFamily: 'Poppins-Medium', ...style }}>
+                {children}
+            </RnText>
+        );
+    }
+    else if (semiBold) {
+        return (
+            <RnText
+                style={{ fontFamily: 'Poppins-SemiBold', ...style }}>
+                {children}
+            </RnText>
+        );
+    } else if (light) {
+        return (
+            <RnText
+                style={{ fontFamily: 'Poppins-Light', ...style }}>
                 {children}
             </RnText>
         );

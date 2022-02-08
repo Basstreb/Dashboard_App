@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { TextInputPoppins, TextRoboto } from '../../utils/CustomFonts';
 import Feather from 'react-native-vector-icons/Feather';
 import { useFormik } from 'formik';

@@ -2,7 +2,6 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import CostsScreen from '../screens/Costs';
 import TaxesScreen from '../screens/Taxes';
-import OffersScreen from '../screens/Offers';
 import GraphicsScreen from '../screens/Graphics';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TextPoppins } from '../utils/CustomFonts';
@@ -11,7 +10,8 @@ import OffersSVG from '../utils/svg/OffersSVG';
 import CostsSVG from '../utils/svg/CostsSVG';
 import IvaSVG from '../utils/svg/IvaSVG';
 import GraphsSVG from '../utils/svg/GraphsSVG';
-import ClientsNavigation from './ClientsNavigation';
+import CustomersNavigation from './CustomersNavigation';
+import OffersNavigation from './OffersNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +37,7 @@ export default function Navigation() {
             }}>
             <Tab.Screen
                 name="Clients"
-                component={ClientsNavigation}
+                component={CustomersNavigation}
                 options={{
                     tabBarLabel: ({ color, size }) => renderText('Clientes', color, size),
                     tabBarIcon: ({ color }) => (
@@ -46,7 +46,7 @@ export default function Navigation() {
                 }} />
             <Tab.Screen
                 name="Oferts"
-                component={OffersScreen} Î
+                component={OffersNavigation} Î
                 options={{
                     tabBarLabel: ({ color, size }) => renderText('Ofertas', color, size),
                     tabBarIcon: ({ color }) => (
