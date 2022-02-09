@@ -1,8 +1,15 @@
-import { API_URL } from "../utils/Const";
+import {
+    BRING_CUSTOMERS_API,
+    CREATE_CUSTOMER_API,
+    DELETE_CUSTOMER_API,
+    DELETE_CUSTOMER_OFFERS_API,
+    UPDATE_CUSTOMER_API,
+    UPDATE_CUSTOMER_OFFERS_API
+} from "../constants/apiRoutes";
 
 export const bringAllCustomersApi = async () => {
     try {
-        const response = await fetch(API_URL + "/list_client", {
+        const response = await fetch(BRING_CUSTOMERS_API, {
             method: 'GET',
         });
         const content = await response.json();
@@ -14,7 +21,7 @@ export const bringAllCustomersApi = async () => {
 
 export const createCustomerApi = async (data) => {
     try {
-        const response = await fetch(API_URL + "/create_client", {
+        const response = await fetch(CREATE_CUSTOMER_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -36,7 +43,7 @@ export const updateCustomerApi = async (data, id) => {
     const direction = data.direction
 
     try {
-        const responseCLientOffers = await fetch(API_URL + "/update_client_offers", {
+        const responseCLientOffers = await fetch(UPDATE_CUSTOMER_OFFERS_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -45,7 +52,7 @@ export const updateCustomerApi = async (data, id) => {
             })
         });
 
-        const responseClient = await fetch(API_URL + "/update_client", {
+        const responseClient = await fetch(UPDATE_CUSTOMER_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -70,13 +77,13 @@ export const deleteCustomerApi = async (id) => {
     const clientId = String(id)
 
     try {
-        const responseDeleteClientOffers = await fetch(API_URL + "/delete_client_offers", {
+        const responseDeleteClientOffers = await fetch(DELETE_CUSTOMER_OFFERS_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ clientId })
         })
 
-        const response = await fetch(API_URL + "/delete_client", {
+        const response = await fetch(DELETE_CUSTOMER_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id })

@@ -1,9 +1,8 @@
-import { API_URL } from "../utils/Const";
+import { LOGIN_URL, REGISTER_URL } from "../constants/apiRoutes";
 
-//Funcion para traer todos los pokemones
 export const loginUserApi = async (data) => {
     try {
-        const response = await fetch(API_URL + "/login", {
+        const response = await fetch(LOGIN_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -19,7 +18,7 @@ export const loginUserApi = async (data) => {
 export const registerUserApi = async (data) => {
 
     try {
-        const response = await fetch(API_URL + "/register", {
+        const response = await fetch(REGISTER_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)

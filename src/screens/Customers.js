@@ -78,6 +78,5 @@ const styles = StyleSheet.create({
   bg: {
     backgroundColor: '#FFF',
     height: '100%',
-    paddingTop: 10,
   },
 })

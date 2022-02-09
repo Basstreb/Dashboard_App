@@ -1,9 +1,15 @@
-import { API_URL } from "../utils/Const";
 import dayjs from 'dayjs';
+import {
+    BRING_OFFERS_API,
+    CREATE_OFFER_API,
+    CREATE_OFFER_REG_API,
+    DELETE_OFFER_API,
+    UPDATE_OFFER_API
+} from "../constants/apiRoutes";
 
 export const bringAllOffersApi = async () => {
     try {
-        const response = await fetch(API_URL + "/list_offer", {
+        const response = await fetch(BRING_OFFERS_API, {
             method: 'GET',
         });
         const content = await response.json();
@@ -22,7 +28,7 @@ export const createOfferApi = async (data) => {
         const offerName = data.offerName
         const price = data.price
 
-        const response = await fetch(API_URL + "/create_offer", {
+        const response = await fetch(CREATE_OFFER_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -57,7 +63,7 @@ export const updateOfferApi = async (data, percent) => {
     let contentOfferUpd;
 
     if (percentN !== "0") {
-        responseOfferReg = await fetch(API_URL + "/create_offer_reg", {
+        responseOfferReg = await fetch(CREATE_OFFER_REG_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -73,7 +79,7 @@ export const updateOfferApi = async (data, percent) => {
 
     if (parseInt(percent) + parseInt(percentN) === 100) {
         status = "PAYD";
-        responseOfferUpd = await fetch(API_URL + "/update_offer", {
+        responseOfferUpd = await fetch(UPDATE_OFFER_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -88,7 +94,7 @@ export const updateOfferApi = async (data, percent) => {
         })
         contentOfferUpd = await responseOfferUpd.json();
     } else {
-        responseOfferUpd = await fetch(API_URL + "/update_offer", {
+        responseOfferUpd = await fetch(UPDATE_OFFER_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -111,7 +117,7 @@ export const updateOfferApi = async (data, percent) => {
 
 export const deleteOfferApi = async (id) => {
     try {
-        const response = await fetch(API_URL + "/delete_offer", {
+        const response = await fetch(DELETE_OFFER_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id })

@@ -3,13 +3,12 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { TextPoppins } from '../utils/CustomFonts';
 import { ScrollView } from 'react-native';
-import {showStatus, trasnlateOfferStatus} from '../utils/Const';
+import { showStatus, trasnlateOfferStatus } from '../utils/Const';
 
 export default function DataDetailOffer({ offer }) {
 
     const statusBg = {
         backgroundColor: showStatus(offer.status),
-        borderRadius: 8,
         ...styles.statusStyle
     };
 
@@ -62,7 +61,9 @@ export default function DataDetailOffer({ offer }) {
 
             <View style={styles.dataSpacing}>
                 <TextPoppins light style={styles.text}>Estado</TextPoppins>
-                <TextPoppins semiBold style={statusBg}>{trasnlateOfferStatus(offer.status)}</TextPoppins>
+                <View style={statusBg}>
+                    <TextPoppins semiBold style={styles.statusText}>{trasnlateOfferStatus(offer.status)}</TextPoppins>
+                </View>
             </View>
         </ScrollView>
     );
@@ -84,14 +85,17 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
     },
     statusStyle: {
-        fontSize: 16,
-        letterSpacing: 1,
         padding: 5,
         flex: 1,
         alignItems: 'center',
         textAlign: 'center',
         width: '80%',
         marginBottom: 20,
+        borderRadius: 8,
+    },
+    statusText:{
         color: '#FFF',
-    }
+        fontSize: 16,
+        letterSpacing: 1,
+    },
 })

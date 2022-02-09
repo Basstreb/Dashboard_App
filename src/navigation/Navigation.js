@@ -1,7 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import CostsScreen from '../screens/Costs';
-import TaxesScreen from '../screens/Taxes';
 import GraphicsScreen from '../screens/Graphics';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TextPoppins } from '../utils/CustomFonts';
@@ -12,6 +11,7 @@ import IvaSVG from '../utils/svg/IvaSVG';
 import GraphsSVG from '../utils/svg/GraphsSVG';
 import CustomersNavigation from './CustomersNavigation';
 import OffersNavigation from './OffersNavigation';
+import TaxesNavigation from './TaxesNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -64,7 +64,7 @@ export default function Navigation() {
                 }} />
             <Tab.Screen
                 name="IVA"
-                component={TaxesScreen}
+                component={TaxesNavigation}
                 options={{
                     tabBarLabel: ({ color, size }) => renderText('IVA', color, size),
                     tabBarIcon: ({ color }) => (

@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { COLORS } from '../utils/Const';
 import { bringAllOffersApi } from '../api/OffersApi';
 import { useFocusEffect } from '@react-navigation/native';
-import OfferCard from '../components/DataCard';
 import DataDisplayerOffer from '../components/DataDisplayerOffer';
 import DataCard from '../components/DataCard';
 

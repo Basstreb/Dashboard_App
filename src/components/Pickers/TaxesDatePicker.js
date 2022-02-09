@@ -4,7 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { TextPoppins } from '../../utils/CustomFonts';
 import dayjs from 'dayjs';
 
-export const ClientDatePicker = ({ dateSelection, initialDate }) => {
+export const TaxesDatePicker = ({ dateSelection, initialDate }) => {
     const [date, setDate] = useState(initialDate ? dayjs(initialDate).toDate() : new Date());
     const [show, setShow] = useState(false);
     const todayDate = new Date();
@@ -12,7 +12,9 @@ export const ClientDatePicker = ({ dateSelection, initialDate }) => {
     const onChange = (event, selectedDate) => {
         setDate(selectedDate || date);
         dateSelection(dayjs(selectedDate).format('YYYY-MM-DD'));
-        setShow(false);
+        if (Platform.OS === 'android') {
+            setShow(false);
+        }
     };
 
     const showDatepicker = () => {

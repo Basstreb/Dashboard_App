@@ -1,8 +1,7 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import Modal from 'react-native-modal';
 import { TextPoppins } from '../../utils/CustomFonts';
-import { deleteCustomerApi } from '../../api/CustomersApi';
 import { deleteOfferApi } from '../../api/OffersApi';
 
 export default function DeleteOfferModal(props) {
