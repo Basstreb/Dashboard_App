@@ -1,41 +1,38 @@
-import { View, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
-import React, { useCallback, useEffect, useState } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
 import { TextOverpassBold, TextPoppins } from '../../utils/CustomFonts';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { COLORS } from '../../utils/Const';
+import { bringCommonCosts } from '../../api/CostsApi';
 import { useFocusEffect } from '@react-navigation/native';
-import { bringIvaPaid, bringIvaTotal } from '../../api/TaxesApi';
 import DataCard from '../../components/DataCard';
-import DataDisplayerTaxes from '../../components/DataDisplayerTaxes';
+import DataDisplayerCommonCosts from '../../components/DataDisplayerCommonCosts';
 
-export default function TaxesPaid(props) {
+export default function CommonCosts(props) {
 
     const { navigation } = props;
-    const [paidTaxes, setPaidTaxes] = useState();
-    const [totalTaxes, setTotalTaxes] = useState();
+    const [commonCosts, setCommonCosts] = useState(undefined);
 
     useFocusEffect(
         useCallback(() => {
             (async () => {
                 try {
-                    const paidTaxesResponse = await bringIvaPaid();
-                    const totalTaxesResponse = await bringIvaTotal();
-                    setPaidTaxes(paidTaxesResponse);
-                    setTotalTaxes(totalTaxesResponse);
+                    const commonCostsRespone = await bringCommonCosts();
+                    setCommonCosts(commonCostsRespone);
                 } catch (error) {
                     console.error(error);
                 }
             })();
-        }, [paidTaxes])
+        }, [commonCosts])
     )
 
     useEffect(() => {
         navigation.setOptions({
             headerLeft: () => (
-                <TextOverpassBold style={{ fontSize: 25, marginLeft: 20, letterSpacing: 2, color: COLORS.merkinsio }}>Pagado</TextOverpassBold>
+                <TextOverpassBold style={{ fontSize: 25, marginLeft: 20, letterSpacing: 2, color: COLORS.merkinsio }}>Gastos comunes</TextOverpassBold>
             ),
             headerRight: () => (
-                <TouchableOpacity onPress={() => navigation.navigate('CreateTaxes', totalTaxes && totalTaxes)}>
+                <TouchableOpacity onPress={() => navigation.navigate("CreateCommonCost")}>
                     <Icon
                         name="plus"
                         size={30}
@@ -55,32 +52,29 @@ export default function TaxesPaid(props) {
                 backgroundColor: '#FFF',
             }
         })
-    }, [navigation, totalTaxes])
+    }, [navigation])
 
     return (
         <View style={styles.bg}>
             <View style={styles.taxesMenu}>
-                <TouchableOpacity onPress={() => navigation.navigate('SupportedTaxes')}>
-                    <TextPoppins semiBold>Soportado</TextPoppins>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('RepercutedTaxes')}>
-                    <TextPoppins semiBold>Repercutido</TextPoppins>
-                </TouchableOpacity>
                 <View>
-                    <TextPoppins semiBold>Pagado</TextPoppins>
+                    <TextPoppins semiBold>Comunes</TextPoppins>
                     <View style={styles.focusView} />
                 </View>
+                <TouchableOpacity onPress={() => navigation.navigate('StaffCosts')}>
+                    <TextPoppins semiBold>Personales</TextPoppins>
+                </TouchableOpacity>
             </View>
 
             <FlatList
-                data={paidTaxes}
+                data={commonCosts}
                 numColumns={1}
                 showsVerticalScrollIndicator={false}
-                keyExtractor={(paidTaxe) => String(paidTaxe.id)}
+                keyExtractor={(commonCost) => String(commonCost.id)}
                 style={{ marginTop: 10 }}
                 renderItem={({ item }) =>
                     <DataCard>
-                        <DataDisplayerTaxes taxes={item} />
+                        <DataDisplayerCommonCosts commonCost={item} />
                     </DataCard>}
             />
         </View >
@@ -95,7 +89,7 @@ const styles = StyleSheet.create({
     taxesMenu: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 40,
+        paddingHorizontal: 70,
         paddingVertical: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#ABABAB',

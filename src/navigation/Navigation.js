@@ -1,6 +1,5 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import CostsScreen from '../screens/Costs';
 import GraphicsScreen from '../screens/Graphics';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TextPoppins } from '../utils/CustomFonts';
@@ -12,6 +11,7 @@ import GraphsSVG from '../utils/svg/GraphsSVG';
 import CustomersNavigation from './CustomersNavigation';
 import OffersNavigation from './OffersNavigation';
 import TaxesNavigation from './TaxesNavigation';
+import CostsNavigation from './CostsNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -55,7 +55,7 @@ export default function Navigation() {
                 }} />
             <Tab.Screen
                 name="Gastos"
-                component={CostsScreen}
+                component={CostsNavigation}
                 options={{
                     tabBarLabel: ({ color, size }) => renderText('Gastos', color, size),
                     tabBarIcon: ({ color }) => (

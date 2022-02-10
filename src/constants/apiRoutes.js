@@ -1,5 +1,5 @@
 // export const API_URL = 'http://localhost:5050';
-export const API_URL = 'https://14bd-185-188-11-193.eu.ngrok.io';
+export const API_URL = 'https://e6bc-185-188-11-193.eu.ngrok.io';
 
 export const LOGIN_URL = API_URL + '/login';
 export const REGISTER_URL = API_URL + '/register';
@@ -25,3 +25,7 @@ export const BRING_IVA_PAID_API = `${API_URL}/list_iva_paid`;
 export const BRING_IVA_TOTAL_API = `${API_URL}/list_iva_total`;
 export const CREATE_IVA_PAYMENT_API = `${API_URL}/create_iva_paid`;
 export const BRING_IVA_PAID_PRICE_API = `${API_URL}/list_iva_paid_price`;
+
+export const BRING_COMMON_COSTS_API = `${API_URL}/list_common`;
+export const BRING_STAFF_COSTS_API = `${API_URL}/list_staff`;
+export const CREATE_COMMON_COST_API = `${API_URL}/create_common`;

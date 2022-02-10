@@ -5,7 +5,7 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { bringAllCustomersApi } from '../../api/CustomersApi';
 import Icon from 'react-native-vector-icons/Entypo';
-import { normalizeCustomers } from '../../utils/NormalizeCustomers';
+import { normalizeCustomers } from '../../utils/Normalize';
 
 export default function ClientPicker({clientSelection}) {
 

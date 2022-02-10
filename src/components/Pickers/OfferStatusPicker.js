@@ -1,11 +1,9 @@
-import { Platform, StyleSheet } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
+import { StyleSheet } from 'react-native';
+import React, { useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { bringAllCustomersApi } from '../../api/CustomersApi';
 import Icon from 'react-native-vector-icons/Entypo';
-import { normalizeCustomers } from '../../utils/NormalizeCustomers';
 
 export default function OfferStatusPicker({ initialStatus, statusSelection }) {
 

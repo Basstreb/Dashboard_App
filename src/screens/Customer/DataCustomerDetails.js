@@ -1,12 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import React, { useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { TextPoppins } from '../../utils/CustomFonts';
 import DataDetailCustomer from '../../components/DataDetailCustomer';
-import DataDetailOffer from '../../components/DataDetailOffer';
 
 export default function CustomerDetails(props) {
-
   const customer = props.route.params;
   const { navigation } = props;
 

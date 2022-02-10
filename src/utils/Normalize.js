@@ -13,3 +13,19 @@ export const normalizeCustomers = (customers) => {
     }
     return items;
 }
+
+export const normalizeOffers = (offers) => {
+    let items = [];
+    if (offers) {
+        offers.map(offer => {
+            items.push({
+                label: offer.offerName,
+                value: {
+                    id: offer.id,
+                    offerName: offer.offerName
+                }
+            })
+        })
+    }
+    return items;
+}

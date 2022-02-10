@@ -8,10 +8,9 @@ import DetailsSVG from "../../utils/svg/DetailsSVG";
 import EditSVG from "../../utils/svg/EditSVG";
 import DeleteModal from "./DeleteCustomerModal";
 
-export default function OptionsCustomerModal(props) {
-
-    const { optionsModalVisible, closeOptionsModalVisible, id, customer } = props;
-    const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+export default function OptionsCommonCostModal(props) {
+    const { optionsModalVisible, closeOptionsModalVisible, id, commonCost } = props;
+    // const [deleteModalVisible, setDeleteModalVisible] = useState(false);
     const navigation = useNavigation();
 
     return (
@@ -34,7 +33,7 @@ export default function OptionsCustomerModal(props) {
                         </View>
                         <TouchableOpacity onPress={() => {
                             closeOptionsModalVisible();
-                            navigation.navigate('CustomerDetails', customer)
+                            navigation.navigate('CommonCostsDetails', commonCost)
                         }}>
                             <TextPoppins medium style={styles.poppinsStyle}>Ver detalles</TextPoppins>
                         </TouchableOpacity>
@@ -46,7 +45,7 @@ export default function OptionsCustomerModal(props) {
                         </View>
                         <TouchableOpacity onPress={() => {
                             closeOptionsModalVisible();
-                            navigation.navigate('EditCustomer', customer)
+                            // navigation.navigate('EditCustomer', customer)
                         }}>
                             <TextPoppins medium style={styles.poppinsStyle}>Editar</TextPoppins>
                         </TouchableOpacity>
@@ -56,16 +55,18 @@ export default function OptionsCustomerModal(props) {
                         <View style={{ width: 70, height: 40 }}>
                             <DeleteSVG fill='#9B9999' />
                         </View>
-                        <TouchableOpacity onPress={() => setDeleteModalVisible(true)}>
+                        <TouchableOpacity
+                        // onPress={() => setDeleteModalVisible(true)}
+                        >
                             <TextPoppins medium style={styles.poppinsStyleRed}>Eliminar</TextPoppins>
                         </TouchableOpacity>
                     </View>
 
-                    <DeleteModal
+                    {/* <DeleteModal
                         id={id}
                         deleteModalVisible={deleteModalVisible}
                         closeOptionsModalVisible={() => closeOptionsModalVisible()}
-                        closeDeleteModalVisible={() => setDeleteModalVisible(false)} />
+                        closeDeleteModalVisible={() => setDeleteModalVisible(false)} /> */}
 
                 </View>
             </View>
