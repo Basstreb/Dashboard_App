@@ -3,11 +3,12 @@ import React from 'react';
 import Modal from 'react-native-modal';
 import { TextPoppins } from '../../utils/CustomFonts';
 import { deleteCustomerApi } from '../../api/CustomersApi';
-import { deleteOfferApi } from '../../api/OffersApi';
+import * as SplashScren from 'expo-splash-screen';
 
 export default function DeleteCustomerModal(props) {
 
   const { deleteModalVisible, closeDeleteModalVisible, closeOptionsModalVisible, id } = props;
+  SplashScren.preventAutoHideAsync();
 
   const deleteCustomer = async (id) => {
     const response = await deleteCustomerApi(id);

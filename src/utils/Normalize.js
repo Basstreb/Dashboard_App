@@ -29,3 +29,16 @@ export const normalizeOffers = (offers) => {
     }
     return items;
 }
+
+export const normalizeStaffCostOffers = (offers) => {
+    let items = [];
+    if (offers) {
+        offers.map(offer => {
+            items.push({
+                label: offer.offerName,
+                value: offer.id,
+            })
+        })
+    }
+    return items;
+}

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { TextOverpassBold, TextPoppins } from '../../utils/CustomFonts';
 import Icon from 'react-native-vector-icons/FontAwesome5';

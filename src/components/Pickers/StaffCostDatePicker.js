@@ -4,7 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { TextPoppins } from '../../utils/CustomFonts';
 import dayjs from 'dayjs';
 
-export const ClientDatePicker = ({ dateSelection, initialDate }) => {
+export const StaffCostDatePicker = ({ dateSelection, initialDate }) => {
     const [date, setDate] = useState(initialDate ? dayjs(initialDate).toDate() : new Date());
     const [show, setShow] = useState(false);
     const todayDate = new Date();
@@ -27,7 +27,7 @@ export const ClientDatePicker = ({ dateSelection, initialDate }) => {
                 onPress={showDatepicker}
                 style={styles.input}>
                 <TextPoppins regular style={{ color: '#696767' }} >
-                    {dayjs(date).format('DD/MM/YYYY') === dayjs(todayDate).format('DD/MM/YYYY') ? 'Fecha de decisión' : dayjs(date).format('DD/MM/YYYY')}
+                    {dayjs(date).format('DD/MM/YYYY') === dayjs(todayDate).format('DD/MM/YYYY') ? 'Fecha del gasto' : dayjs(date).format('DD/MM/YYYY')}
                 </TextPoppins>
             </TouchableOpacity>
             {show && (

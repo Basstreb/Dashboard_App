@@ -42,7 +42,7 @@ export default function OfferPicker({ offerSelection }) {
                 placeholder={{
                     fontSize: 15,
                     label: 'Selecciona una oferta',
-                    value: '',
+                    value: 'asdf',
                     color: '#696767',
                     fontFamily: 'Poppins-Regular',
                 }}

@@ -5,16 +5,18 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { COLORS } from '../utils/Const';
 import Icon from 'react-native-vector-icons/Entypo';
 import OptionsCommonCostModal from './Modals/OptionsCommonCostModal';
+import dayjs from 'dayjs';
+import OptionsStaffCostModal from './Modals/OptionsStaffCostModal';
 
-export default function DataDisplayerCommonCosts(props) {
+export default function DataDisplayerStaffCosts(props) {
 
-    const { commonCost } = props;
+    const { staffCost } = props;
     const [optionsModalVisible, setOptionsModalVisible] = useState(false);
 
     return (
         <>
             <View style={styles.topMenu}>
-                <TextPoppins regular style={styles.titleText}>Gasto</TextPoppins>
+                <TextPoppins regular style={styles.titleText}>Empleado</TextPoppins>
                 <TouchableOpacity onPress={() => setOptionsModalVisible(true)}>
                     <Icon
                         name='dots-three-vertical'
@@ -24,13 +26,13 @@ export default function DataDisplayerCommonCosts(props) {
                 </TouchableOpacity>
             </View>
 
-            <TextPoppins medium style={styles.textData}>{commonCost.commonCostsName}</TextPoppins>
-            <TextPoppins regular style={styles.titleText}>Oferta asociada</TextPoppins>
-            <TextPoppins medium style={styles.textData}>{commonCost.offerName}</TextPoppins>
-            <TextPoppins regular style={styles.titleText}>Importe</TextPoppins>
-            <TextPoppins medium style={styles.textDataFinal}>{commonCost.amount}€</TextPoppins>
+            <TextPoppins medium style={styles.textData}>{staffCost.staffName}</TextPoppins>
+            <TextPoppins regular style={styles.titleText}>Coste para la empresa</TextPoppins>
+            <TextPoppins medium style={styles.textData}>{staffCost.cost.toFixed(2)}€</TextPoppins>
+            <TextPoppins regular style={styles.titleText}>Fecha</TextPoppins>
+            <TextPoppins medium style={styles.textDataFinal}>{dayjs(staffCost.payDate).format('DD/MM/YYYY')}</TextPoppins>
 
-            <OptionsCommonCostModal id={commonCost.id} commonCost={commonCost} optionsModalVisible={optionsModalVisible} closeOptionsModalVisible={() => setOptionsModalVisible(!optionsModalVisible)} />
+            <OptionsStaffCostModal id={staffCost.id} staffCost={staffCost} optionsModalVisible={optionsModalVisible} closeOptionsModalVisible={() => setOptionsModalVisible(!optionsModalVisible)} />
         </>
     )
 }

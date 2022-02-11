@@ -18,7 +18,6 @@ export default function TaxesCreationForm() {
         validationSchema: Yup.object(validationSchema()),
         validateOnChange: false,
         onSubmit: async (data) => {
-            console.log(data);
             const content = await createIvaPayment(data);
 
             if (typeof content === 'object') {

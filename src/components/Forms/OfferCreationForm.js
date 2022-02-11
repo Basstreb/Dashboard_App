@@ -22,7 +22,7 @@ export default function OfferCreationForm() {
 
       if (typeof content === 'object') {
         toastMessage('Oferta creada correctamente', COLORS.succes);
-        navigation.navigate('MainCustomers');
+        navigation.navigate('MainOffers');
       } else {
         toastMessage('Hubo un error en el registro', COLORS.error);
       }

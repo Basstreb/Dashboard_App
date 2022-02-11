@@ -7,10 +7,12 @@ import DeleteSVG from "../../utils/svg/DeleteSVG";
 import DetailsSVG from "../../utils/svg/DetailsSVG";
 import EditSVG from "../../utils/svg/EditSVG";
 import DeleteModal from "./DeleteCustomerModal";
+import * as SplashScren from 'expo-splash-screen'
 
 export default function OptionsCustomerModal(props) {
 
     const { optionsModalVisible, closeOptionsModalVisible, id, customer } = props;
+    SplashScren.preventAutoHideAsync();
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
     const navigation = useNavigation();
 

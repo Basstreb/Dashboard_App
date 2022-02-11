@@ -1,5 +1,5 @@
-import { Text, View, StyleSheet, TouchableOpacity, Button, Platform } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import React from 'react';
 import { TextInputPoppins, TextRoboto } from '../../utils/CustomFonts';
 import { useFormik } from 'formik';
 import { toastMessage } from '../../utils/ToastMessage';
@@ -10,19 +10,20 @@ import OfferPicker from '../Pickers/OfferPicker';
 import CommonCostTypoPicker from '../Pickers/CommonCostTypoPicker';
 import CommonCostIvaPicker from '../Pickers/CommonCostIvaPicker';
 import { CommonCostDatePicker } from '../Pickers/CommonCostDatePicker';
-import { createCommonCost } from '../../api/CostsApi';
+import { updateCommonCost } from '../../api/CostsApi';
 
-export default function CommonCostCreationForm() {
+export default function CommonCostEditForm({ commonCost }) {
+
     const navigation = useNavigation();
     const formik = useFormik({
-        initialValues: initialValuesCreationCommonCost(),
+        initialValues: initialValuesEditCommonCost(commonCost),
         validationSchema: Yup.object(validationSchema()),
         validateOnChange: false,
         onSubmit: async (data) => {
-            const content = await createCommonCost(data);
+            const content = await updateCommonCost(data, commonCost.id);
 
             if (typeof content === 'object') {
-                toastMessage('Gasto común creado correctamente', COLORS.succes);
+                toastMessage('Gasto común actualizado correctamente', COLORS.succes);
                 navigation.navigate('CommonCosts');
             } else {
                 toastMessage('Hubo un error en el registro', COLORS.error);
@@ -32,11 +33,6 @@ export default function CommonCostCreationForm() {
 
     return (
         <View>
-
-            <OfferPicker offerSelection={(id, offerName) => {
-                formik.setFieldValue('offerId', id);
-                formik.setFieldValue('offerName', offerName);
-            }} />
 
             <TextInputPoppins
                 placeholder='Gasto'
@@ -61,11 +57,11 @@ export default function CommonCostCreationForm() {
                 regular
             />
 
-            <CommonCostTypoPicker typoSelection={(text) => formik.setFieldValue('typo', text)} />
+            <CommonCostTypoPicker initialStatus={commonCost.typo} typoSelection={(text) => formik.setFieldValue('typo', text)} />
 
-            <CommonCostIvaPicker ivaSelection={(text) => formik.setFieldValue('iva', text)} />
+            <CommonCostIvaPicker initialStatus={commonCost.iva} ivaSelection={(text) => formik.setFieldValue('iva', text)} />
 
-            <CommonCostDatePicker dateSelection={(date) => formik.setFieldValue('costDate', date)} />
+            <CommonCostDatePicker initialDate={commonCost.costDate} dateSelection={(date) => formik.setFieldValue('costDate', date)} />
 
             {formik.errors.offerId && formik.errors.offerName && formik.errors.commonCostsName && formik.errors.amount && formik.errors.typo && formik.errors.iva && formik.errors.costDate ?
                 <Text style={styles.error}>Los datos son obligatorios</Text> :
@@ -95,22 +91,21 @@ export default function CommonCostCreationForm() {
             <TouchableOpacity
                 style={styles.saveButton}
                 onPress={() => formik.handleSubmit()}>
-                <TextRoboto style={styles.saveText}>AÑADIR</TextRoboto>
+                <TextRoboto style={styles.saveText}>GUARDAR</TextRoboto>
             </TouchableOpacity>
         </View>
     );
 }
 
-function initialValuesCreationCommonCost() {
+function initialValuesEditCommonCost(commonCost) {
     return {
-        offerId: '',
-        offerName: '',
-        commonCostsName: '',
-        amount: '',
-        typo: '',
-        iva: '',
-        costDate: '',
-
+        offerId: commonCost.offerId,
+        offerName: commonCost.offerName,
+        commonCostsName: commonCost.commonCostsName,
+        amount: String(commonCost.amount),
+        typo: commonCost.typo,
+        iva: commonCost.iva,
+        costDate: commonCost.costDate,
     }
 }
 

@@ -7,10 +7,10 @@ import { toastMessage } from '../../utils/ToastMessage';
 import { COLORS } from '../../utils/Const';
 import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
+import CustomerErrors from '../CustomerErrors';
 
-export default function CustomerEditForm(props) {
+export default function CustomerEditForm({ customer }) {
 
-    const { customer } = props;
     const navigation = useNavigation();
     const formik = useFormik({
         initialValues: initialValuesEditCustomer(customer),
@@ -92,30 +92,7 @@ export default function CustomerEditForm(props) {
                 regular
             />
 
-            {formik.errors.companyName && formik.errors.managerName && formik.errors.managerCharge && formik.errors.phoneNumber && formik.errors.cif && formik.errors.direction ?
-                <Text style={styles.error}>Los datos son obligatorios</Text> :
-                <>
-                    {formik.errors.companyName ? <Text style={styles.error}>{formik.errors.companyName}</Text> :
-                        <>
-                            {formik.errors.managerName ? <Text style={styles.error}>{formik.errors.managerName}</Text> :
-                                <>
-                                    {formik.errors.managerCharge ? <Text style={styles.error}>{formik.errors.managerCharge}</Text> :
-                                        <>
-                                            {formik.errors.phoneNumber ? <Text style={styles.error}>{formik.errors.phoneNumber}</Text> :
-                                                <>
-                                                    {formik.errors.cif ? <Text style={styles.error}>{formik.errors.cif}</Text> :
-                                                        <>
-                                                            {formik.errors.direction ? <Text style={styles.error}>{formik.errors.direction}</Text> :
-                                                                <>
-                                                                    {/* {errorCheckPasswords && <Text style={styles.error}>{errorCheckPasswords}</Text>} */}
-                                                                </>}
-                                                        </>}
-                                                </>}
-                                        </>}
-                                </>}
-                        </>}
-                </>
-            }
+            <CustomerErrors formik={formik} />
 
             <TouchableOpacity
                 style={styles.saveButton}
@@ -158,12 +135,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         borderBottomWidth: 1,
         borderBottomColor: '#8A8888',
-    },
-    error: {
-        color: 'red',
-        marginTop: 14,
-        marginBottom: -31,
-        textAlign: 'center',
     },
     saveButton: {
         backgroundColor: '#0078B4',

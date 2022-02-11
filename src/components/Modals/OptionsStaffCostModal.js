@@ -6,10 +6,10 @@ import { TextPoppins } from "../../utils/CustomFonts";
 import DeleteSVG from "../../utils/svg/DeleteSVG";
 import DetailsSVG from "../../utils/svg/DetailsSVG";
 import EditSVG from "../../utils/svg/EditSVG";
-import DeleteModal from "./DeleteCommonCostModal";
+import DeleteModal from "./DeleteStaffCostModal";
 
-export default function OptionsCommonCostModal(props) {
-    const { optionsModalVisible, closeOptionsModalVisible, id, commonCost } = props;
+export default function OptionsStaffCostModal(props) {
+    const { optionsModalVisible, closeOptionsModalVisible, id, staffCost } = props;
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
     const navigation = useNavigation();
 
@@ -33,7 +33,7 @@ export default function OptionsCommonCostModal(props) {
                         </View>
                         <TouchableOpacity onPress={() => {
                             closeOptionsModalVisible();
-                            navigation.navigate('CommonCostsDetails', commonCost)
+                            navigation.navigate('StaffCostsDetails', staffCost)
                         }}>
                             <TextPoppins medium style={styles.poppinsStyle}>Ver detalles</TextPoppins>
                         </TouchableOpacity>
@@ -45,7 +45,7 @@ export default function OptionsCommonCostModal(props) {
                         </View>
                         <TouchableOpacity onPress={() => {
                             closeOptionsModalVisible();
-                            navigation.navigate('EditCommonCost', commonCost)
+                            navigation.navigate('EditStaffCosts', staffCost)
                         }}>
                             <TextPoppins medium style={styles.poppinsStyle}>Editar</TextPoppins>
                         </TouchableOpacity>

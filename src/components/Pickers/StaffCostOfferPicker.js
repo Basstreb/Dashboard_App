@@ -1,13 +1,28 @@
-import { StyleSheet, View } from 'react-native';
-import React, { useState } from 'react';
+import { Platform, StyleSheet, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import { bringAllCustomersApi } from '../../api/CustomersApi';
 import Icon from 'react-native-vector-icons/Entypo';
+import { normalizeStaffCostOffers } from '../../utils/Normalize';
+import { bringAllOffersApi } from '../../api/OffersApi';
 
-export default function CommonCostIvaPicker({ initialStatus, ivaSelection }) {
+export default function StaffCostOfferPicker({ offerSelection, initialStatus }) {
+    const [offers, setOffers] = useState();
+    const items = normalizeStaffCostOffers(offers);
+    const [valueIni, setValue] = useState(parseInt(initialStatus));
 
-    const [valueEdit, setValueEdit] = useState(String(initialStatus) || '');
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await bringAllOffersApi();
+                setOffers(response);
+            } catch (error) {
+                console.error(error);
+            }
+        })();
+    }, [])
 
     let [fontsLoaded, error] = useFonts({
         'Poppins-Regular': require('../../../assets/fonts/Poppins-Regular.ttf'),
@@ -17,19 +32,19 @@ export default function CommonCostIvaPicker({ initialStatus, ivaSelection }) {
         console.error(error);
     }
 
-    if (!fontsLoaded) {
+    if (!fontsLoaded || !offers) {
         return <AppLoading />
     }
 
     return (
-        <View style={{marginTop: 10}}>
+        <View style={{marginTop: 15}}>
             <RNPickerSelect
                 useNativeAndroidPickerStyle={false}
-                value={valueEdit}
+                value={valueIni}
                 placeholder={{
                     fontSize: 15,
-                    label: 'Selecciona el porcentaje de iva',
-                    value: '',
+                    label: 'Selecciona una oferta',
+                    value: 'asdf',
                     color: '#696767',
                     fontFamily: 'Poppins-Regular',
                 }}
@@ -75,14 +90,10 @@ export default function CommonCostIvaPicker({ initialStatus, ivaSelection }) {
                     return <Icon name="chevron-down" size={40} color="#696767" style={styles.icon} />;
                 }}
                 onValueChange={(value) => {
-                    setValueEdit(value);
-                    ivaSelection(value);
+                    setValue(value);
+                    offerSelection(value);
                 }}
-                items={[
-                    { label: '4%', value: '4' },
-                    { label: '10%', value: '10' },
-                    { label: '21%', value: '21' }
-                ]}
+                items={items}
             />
         </View>
     );

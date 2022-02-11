@@ -1,12 +1,30 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import React, { useEffect } from 'react';
+import { View, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
 import { TextOverpassBold, TextPoppins } from '../../utils/CustomFonts';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { COLORS } from '../../utils/Const';
+import { useFocusEffect } from '@react-navigation/core';
+import { bringStaffCosts } from '../../api/CostsApi';
+import DataCard from '../../components/DataCard';
+import DataDisplayerStaffCosts from '../../components/DataDisplayerStaffCosts';
 
 export default function StaffCosts(props) {
 
     const { navigation } = props;
+    const [staffCosts, setStaffCosts] = useState(undefined);
+
+    useFocusEffect(
+        useCallback(() => {
+            (async () => {
+                try {
+                    const staffCostsRespone = await bringStaffCosts();
+                    setStaffCosts(staffCostsRespone);
+                } catch (error) {
+                    console.error(error);
+                }
+            })();
+        }, [staffCosts])
+    )
 
     useEffect(() => {
         navigation.setOptions({
@@ -14,7 +32,7 @@ export default function StaffCosts(props) {
                 <TextOverpassBold style={{ fontSize: 25, marginLeft: 20, letterSpacing: 2, color: COLORS.merkinsio }}>Gastos de personal</TextOverpassBold>
             ),
             headerRight: () => (
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('CreateStaffCosts')}>
                     <Icon
                         name="plus"
                         size={30}
@@ -47,6 +65,18 @@ export default function StaffCosts(props) {
                     <View style={styles.focusView} />
                 </View>
             </View>
+
+            <FlatList
+                data={staffCosts}
+                numColumns={1}
+                showsVerticalScrollIndicator={false}
+                keyExtractor={(staffCost) => String(staffCost.id)}
+                style={{ marginTop: 10 }}
+                renderItem={({ item }) =>
+                    <DataCard>
+                        <DataDisplayerStaffCosts staffCost={item} />
+                    </DataCard>}
+            />
         </View >
     )
 }

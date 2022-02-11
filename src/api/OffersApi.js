@@ -75,8 +75,6 @@ export const updateOfferApi = async (data, percent) => {
         contentOfferReg = await responseOfferReg.json();
     }
 
-    console.log();
-
     if (parseInt(percent) + parseInt(percentN) === 100) {
         status = "PAYD";
         responseOfferUpd = await fetch(UPDATE_OFFER_API, {
@@ -109,9 +107,6 @@ export const updateOfferApi = async (data, percent) => {
         })
         contentOfferUpd = await responseOfferUpd.json();
     }
-
-    console.log(contentOfferUpd);
-
     return contentOfferUpd;
 }
 
