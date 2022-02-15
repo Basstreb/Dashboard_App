@@ -12,10 +12,7 @@ export default function Customers(props) {
 
   const { navigation } = props;
   const [customers, setCustomers] = useState(undefined);
-  const createCustomer = {
-    action: 'create',
-    customer: true,
-  }
+
 
   useFocusEffect(
     useCallback(() => {
@@ -36,7 +33,7 @@ export default function Customers(props) {
         <TextOverpassBold style={{ fontSize: 25, marginLeft: 20, letterSpacing: 2, color: COLORS.merkinsio }}>Clientes</TextOverpassBold>
       ),
       headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate('CreateCustomer', createCustomer)}>
+        <TouchableOpacity onPress={() => navigation.navigate('CreateCustomer')}>
           <Icon
             name="plus"
             size={30}

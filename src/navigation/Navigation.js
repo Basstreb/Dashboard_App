@@ -12,6 +12,7 @@ import CustomersNavigation from './CustomersNavigation';
 import OffersNavigation from './OffersNavigation';
 import TaxesNavigation from './TaxesNavigation';
 import CostsNavigation from './CostsNavigation';
+import GraphicsNavigation from './GraphicsNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -73,7 +74,7 @@ export default function Navigation() {
                 }} />
             <Tab.Screen
                 name="Graphics"
-                component={GraphicsScreen}
+                component={GraphicsNavigation}
                 options={{
                     tabBarLabel: ({ color, size }) => renderText('Gráficas', color, size),
                     tabBarIcon: ({ color }) => (

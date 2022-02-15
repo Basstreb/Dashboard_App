@@ -1,5 +1,5 @@
 // export const API_URL = 'http://localhost:5050';
-export const API_URL = 'https://3c8a-185-188-11-193.eu.ngrok.io';
+export const API_URL = 'https://dashboard-api.loca.lt';
 
 export const LOGIN_URL = API_URL + '/login';
 export const REGISTER_URL = API_URL + '/register';
@@ -37,3 +37,10 @@ export const DELETE_STAFF_COST_API = `${API_URL}/delete_staff`;
 export const DELETE_STAFF_COST_PR_API = `${API_URL}/delete_staff_pr`;
 export const UPDATE_STAFF_COST_API = `${API_URL}/update_staff`;
 export const UPDATE_STAFF_COST_PR_API = `${API_URL}/update_staff_pr`;
+
+export const BRING_MONTH_DATA_API = `${API_URL}/price_offer`;
+export const BRING_MONTH_COST_DATA_API = `${API_URL}/price_cost`;
+export const BRING_MONTF_STAFF_DATA_API = `${API_URL}/staff_cost`;
+export const BRING_MONTH_IVA_SUPPORTED_DATA_API = `${API_URL}/list_iva_supported_price`;
+export const BRING_MONTH_IVA_REPERCUTED_DATA_API = `${API_URL}/list_iva_repercuted_price`;
+export const BRING_MONTH_IVA_PAID_DATA_API = `${API_URL}/list_iva_paid_price`;
