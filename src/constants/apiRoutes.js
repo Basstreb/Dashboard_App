@@ -1,5 +1,9 @@
+import { Platform } from "react-native-web";
+
 // export const API_URL = 'http://localhost:5050';
-export const API_URL = 'https://dashboard-api.loca.lt';
+// export const API_URL = 'https://dashboard-api.loca.lt';
+
+export const API_URL = Platform.OS === 'android' ? 'https://dashboard-api.loca.lt' : "http://localhost:5050";
 
 export const LOGIN_URL = API_URL + '/login';
 export const REGISTER_URL = API_URL + '/register';
